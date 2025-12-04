@@ -1,0 +1,1 @@
+// Aqui estara las funciones donde cargara la aplicacion al iniciar el proyecto
