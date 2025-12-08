@@ -6,7 +6,7 @@ const Logo = ({className} : {className? :string}) => {
     <Link href={'/'}>
       <h2 className={cn('text-2xl text-darkColor font-black tracking-wider uppercase hover:text-lightColor hoverEffect group font-sans',className)}>
 
-        KARIBE<span className="text-darkColor group-hover:text-lightColor hoverEffect">A</span>
+        KARIBEA
       </h2>
     </Link>
   )
