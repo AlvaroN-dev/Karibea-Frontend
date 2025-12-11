@@ -21,8 +21,8 @@ const Header = () => {
             <div className="w-auto md:w-1/3 flex items-center justify-end gap-5">
               <SearchBar/>
               <FavoriteButton/>
+              <SignIn />
               <CartIcon/>
-              <SignIn text="Login" className="text-sm font-semibold hover:text-darkColor  hoverEffect"/>
             </div>
 
         </Container>

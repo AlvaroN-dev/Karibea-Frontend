@@ -1,12 +1,15 @@
-import { Button } from "../shadcn/button"
+import { User } from "lucide-react"
+import Link from "next/link"
 
-type ButtonProps = {text? : string,className? : string}
-const SignIn = ({text,className} : ButtonProps) => {
+const UserIcon = () => {
   return (
-    <div className={className}>
-        <Button className="hover:cursor-pointer">{text}</Button>
-    </div>
+    <Link href={'/login'}>
+      <div className="flex items-center gap-1 hover:text-lightColor hoverEffect cursor-pointer">
+        <User className="w-5 h-5"/>
+        <span className="hidden md:inline"></span>
+      </div>
+    </Link>
   )
 }
 
-export default SignIn
+export default UserIcon
