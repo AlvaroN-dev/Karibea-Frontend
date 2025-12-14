@@ -1,12 +1,12 @@
 import { X } from "lucide-react"
 import Logo from "./Logo"
 import { Button } from "../../shadcn/button"
-import { headerData } from "@/src/constants/navLInks"
+import { headerData } from "@/constants/navLInks"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import SocialMedia from "../shared/SocialMedia"
 import { Html } from "next/document"
-import { useOutSideClick } from "@/src/hooks"
+import { useOutSideClick } from "@/hooks"
 
 
 type SideMenuProp = {
@@ -32,7 +32,7 @@ const SideMenu = ({ isOpen, onClose }: SideMenuProp) => {
             </Link>
           ))}
         </div>
-        <SocialMedia/>
+        <SocialMedia />
       </div>
     </div>
   )
