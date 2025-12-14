@@ -9,15 +9,17 @@ const MobileMenu = () => {
 
   return (
     <>
+      {/* Botón de abrir menú */}
       <Button
         variant="ghost"
         size="icon"
         onClick={() => setIsSideBarOpen(true)}
-        className="md:hidden text-darkColor hover:bg-gray-100 cursor-pointer"
+        className="md:hidden text-darkColor hover:bg-gray-100 cursor-pointer transition-all duration-300"
       >
         <AlignLeft className="w-6 h-6" />
       </Button>
 
+      {/* SideMenu con animación */}
       <SideMenu
         isOpen={isSideBarOpen}
         onClose={() => setIsSideBarOpen(false)}

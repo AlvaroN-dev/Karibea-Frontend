@@ -1,7 +1,8 @@
 "use client"
+import { headerData } from "@/src/constants/navLInks"
 import { X } from "lucide-react"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 
 interface SideMenuProps {
   isOpen: boolean
@@ -9,26 +10,13 @@ interface SideMenuProps {
 }
 
 const SideMenu = ({ isOpen, onClose }: SideMenuProps) => {
-  const [show, setShow] = useState(false)
-
-  useEffect(() => {
-    if (isOpen) {
-      setShow(true)
-    } else {
-      const timeout = setTimeout(() => setShow(false), 300) // duración animación
-      return () => clearTimeout(timeout)
-    }
-  }, [isOpen])
-
-  if (!show) return null
-
+  if (!isOpen) return null
+  const pathname = usePathname()
   return (
     <>
       {/* Overlay */}
       <div
-        className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 ${
-          isOpen ? "opacity-100" : "opacity-0"
-        }`}
+        className="fixed inset-0 bg-black/40 z-40 transition-opacity duration-300"
         onClick={onClose}
       />
 
@@ -37,8 +25,7 @@ const SideMenu = ({ isOpen, onClose }: SideMenuProps) => {
         className={`
           fixed top-0 left-0 h-full w-[85%] max-w-sm
           bg-white z-50 shadow-xl
-          transform transition-transform duration-300 ease-out
-          ${isOpen ? "translate-x-0" : "-translate-x-full"}
+          ${isOpen ? "animate-slide-in-left" : "animate-slide-out-left"}
         `}
       >
         {/* Header */}
@@ -47,27 +34,20 @@ const SideMenu = ({ isOpen, onClose }: SideMenuProps) => {
             Menú
           </span>
           <button onClick={onClose}>
-            <X className="w-6 h-6 text-gray-500 cursor-pointer hover:text-black hover:font-extrabold" />
+            <X className="w-6 h-6 text-darkColor cursor-pointer" />
           </button>
         </div>
 
         {/* Links */}
         <nav className="flex flex-col px-5 py-4 gap-4">
-          {[
-            { href: "/ofertas", label: "Ofertas" },
-            { href: "/mujer", label: "Mujer" },
-            { href: "/hombre", label: "Hombre" },
-            { href: "/ninos", label: "Niños" },
-            { href: "/accesorios", label: "Accesorios" },
-            { href: "/cosmeticos", label: "Cosméticos" },
-          ].map((link) => (
+          {headerData.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={onClose}
-              className="font-semibold text-gray-500 hover:font-extrabold hover:text-black hover:scale-105 transition-transform duration-200 ease"
+              className={`font-semibold text-gray-500 hover:font-extrabold hover:text-black hover:scale-105 transition-transform duration-200 ease-in-out ${pathname === link.href ? 'text-gray-900 font-extrabold ' : ''}`}
             >
-              {link.label}
+              {link.title}
             </Link>
           ))}
         </nav>
