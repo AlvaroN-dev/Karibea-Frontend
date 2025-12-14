@@ -13,7 +13,7 @@ const Header = () => {
         <Container className="flex items-center justify-between text-lightColor">
             {/*Logo*/}
             <div className="w-auto md:w-1/3 flex items-center gap-2.5 justify-start md:gap-0">
-            <MobileMenu/>
+            <MobileMenu />
             <Logo/>
             </div>
             {/*NavButton*/}

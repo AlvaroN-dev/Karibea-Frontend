@@ -5,16 +5,17 @@ import SideMenu from "./SideMenu"
 import { useState } from "react"
 
 const MobileMenu = () => {
+  // Estado para controlar si el SideMenu está abierto
   const [isSideBarOpen, setIsSideBarOpen] = useState(false)
 
   return (
     <>
-      {/* Botón de abrir menú */}
+      {/* Botón para abrir menú, visible en mobile y tablet */}
       <Button
         variant="ghost"
         size="icon"
         onClick={() => setIsSideBarOpen(true)}
-        className="md:hidden text-darkColor hover:bg-gray-100 cursor-pointer transition-all duration-300"
+        className="lg:hidden text-darkColor hover:bg-gray-100 cursor-pointer transition-all duration-300"
       >
         <AlignLeft className="w-6 h-6" />
       </Button>
