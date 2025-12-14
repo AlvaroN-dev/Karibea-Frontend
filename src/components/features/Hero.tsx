@@ -6,6 +6,7 @@ import { HeroBanner } from "@/src/types/home";
 import { heroBanners } from "@/src/mock/hero";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 interface HeroProps {
   onCategoryClick?: (category: string) => void;
@@ -65,19 +66,23 @@ export function Hero({ onCategoryClick }: HeroProps) {
 
               {/* BOTONES */}
               <div className="flex flex-col md:flex-row md:justify-center items-center gap-4">
+                <Link href={'/productos'}>
+              
                 <button
                   onClick={() => onCategoryClick?.(banner.action)}
                   className="bg-white text-black px-7 py-3 md:px-8 md:py-4 text-base md:text-lg font-medium hover:bg-gray-100 transition"
                 >
                   Comprar ahora
                 </button>
-
+                </Link>
+                <Link href={'/ofertas'}>    
                 <button
                   onClick={() => onCategoryClick?.("ofertas")}
                   className="border border-white  text-white px-8 py-4 text-lg hover:bg-white hover:text-black transition"
                 >
                   Ver ofertas
                 </button>
+                </Link>
               </div>
             </div>
           </div>
