@@ -4,21 +4,26 @@ import { Button } from "../../shadcn/button"
 import SideMenu from "./SideMenu"
 import { useState } from "react"
 
-
 const MobileMenu = () => {
-    const [isSideBarOpen, setisSideBarOpen] = useState(false)
-    return (
-        <>
-            <Button onClick={() => setisSideBarOpen(!isSideBarOpen)} className="md:hidden">
-                <AlignLeft className="hover:text-darkColor hoverEffect  hover:cursor-pointer " />
-            </Button>
-            <div className="md:hidden">
-                <SideMenu 
-                isOpen={isSideBarOpen}
-                onClose={() => setisSideBarOpen(false)}/>
-            </div>
-        </>
-    )
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false)
+
+  return (
+    <>
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => setIsSideBarOpen(true)}
+        className="md:hidden text-darkColor hover:bg-gray-100 cursor-pointer"
+      >
+        <AlignLeft className="w-6 h-6" />
+      </Button>
+
+      <SideMenu
+        isOpen={isSideBarOpen}
+        onClose={() => setIsSideBarOpen(false)}
+      />
+    </>
+  )
 }
 
 export default MobileMenu

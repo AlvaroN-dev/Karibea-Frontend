@@ -1,40 +1,78 @@
+"use client"
 import { X } from "lucide-react"
-import Logo from "./Logo"
-import { Button } from "../../shadcn/button"
-import { headerData } from "@/src/constants/navLInks"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
-import SocialMedia from "../shared/SocialMedia"
-import { Html } from "next/document"
-import { useOutSideClick } from "@/src/hooks"
+import { useEffect, useState } from "react"
 
-
-type SideMenuProp = {
+interface SideMenuProps {
   isOpen: boolean
   onClose: () => void
 }
-const SideMenu = ({ isOpen, onClose }: SideMenuProp) => {
 
-  const pathName = usePathname()
-  const sideBarRef = useOutSideClick<HTMLDivElement>(onClose)
+const SideMenu = ({ isOpen, onClose }: SideMenuProps) => {
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    if (isOpen) {
+      setShow(true)
+    } else {
+      const timeout = setTimeout(() => setShow(false), 300) // duración animación
+      return () => clearTimeout(timeout)
+    }
+  }, [isOpen])
+
+  if (!show) return null
 
   return (
-    <div className={`fixed inset-y-0 h-screen left-0 z-50 w-full bg-black/50 text-white /80 shadow-xl ${isOpen ? "translate-x-0" : "-translate-x-full"} hoverEffect`}>
-      <div ref={sideBarRef} className="min-w-72 max-w-96 bg-black h-screen  p-10 border-r border-r-lightColor flex flex-col gap-6">
-        <div className="flex items-center justify-between gap-5">
-          <Logo className="text-white " />
-          <Button className="hover:text-white hoverEffect hover:cursor-pointer" onClick={onClose}><X /></Button>
+    <>
+      {/* Overlay */}
+      <div
+        className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 ${
+          isOpen ? "opacity-100" : "opacity-0"
+        }`}
+        onClick={onClose}
+      />
+
+      {/* Panel */}
+      <aside
+        className={`
+          fixed top-0 left-0 h-full w-[85%] max-w-sm
+          bg-white z-50 shadow-xl
+          transform transition-transform duration-300 ease-out
+          ${isOpen ? "translate-x-0" : "-translate-x-full"}
+        `}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 py-4 border-b">
+          <span className="font-semibold text-lg text-darkColor">
+            Menú
+          </span>
+          <button onClick={onClose}>
+            <X className="w-6 h-6 text-gray-500 cursor-pointer hover:text-black hover:font-extrabold" />
+          </button>
         </div>
-        <div className="flex flex-col space-y-3.5  tracking-wide">
-          {headerData?.map((item) => (
-            <Link href={item?.href} key={item?.title} className={`hover:text-white hover:font-bold hoverEffect ${pathName === item?.href && "text-red"}`}>
-              {item?.title}
+
+        {/* Links */}
+        <nav className="flex flex-col px-5 py-4 gap-4">
+          {[
+            { href: "/ofertas", label: "Ofertas" },
+            { href: "/mujer", label: "Mujer" },
+            { href: "/hombre", label: "Hombre" },
+            { href: "/ninos", label: "Niños" },
+            { href: "/accesorios", label: "Accesorios" },
+            { href: "/cosmeticos", label: "Cosméticos" },
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={onClose}
+              className="font-semibold text-gray-500 hover:font-extrabold hover:text-black hover:scale-105 transition-transform duration-200 ease"
+            >
+              {link.label}
             </Link>
           ))}
-        </div>
-        <SocialMedia/>
-      </div>
-    </div>
+        </nav>
+      </aside>
+    </>
   )
 }
 
