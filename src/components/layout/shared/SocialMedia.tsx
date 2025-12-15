@@ -1,6 +1,6 @@
 import { TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip";
 import { Facebook, Github, Link, X, Youtube } from "lucide-react";
-import { Tooltip, TooltipContent } from "@/src/components/shadcn/tooltip";
+import { Tooltip, TooltipContent } from "@/components/shadcn/tooltip";
 
 import { cn } from "@/lib/utils";
 
@@ -52,8 +52,8 @@ const SocialMedia = ({ className, iconClassName, tooltipClassName }: Props) => {
                 {item?.icon}
               </a>
             </TooltipTrigger>
-            <TooltipContent className={cn('bg-gray-400 text-darkColor font-semibold border border-black',tooltipClassName)}>
-                {item?.title}
+            <TooltipContent className={cn('bg-gray-400 text-darkColor font-semibold border border-black', tooltipClassName)}>
+              {item?.title}
             </TooltipContent>
           </Tooltip>
         ))}
