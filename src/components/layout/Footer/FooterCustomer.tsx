@@ -1,13 +1,16 @@
 'use client';
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function FooterCustomer() {
+    const { t } = useLanguage();
     const items = [
-        "Contacto",
-        "Envíos y Entregas",
-        "Devoluciones",
-        "Guía de Tallas",
-        "Preguntas Frecuentes",
-        "Rastrear Pedido"
+        t.footer.contact,           // Contact
+        t.footer.shipping,          // Shipping & Delivery
+        t.footer.returns,           // Free Returns
+        t.footer.sizeGuide,         // Size Guide
+        t.footer.faq,
+        t.footer.trackOrder,
+
     ];
 
     return (
