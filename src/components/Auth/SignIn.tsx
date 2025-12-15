@@ -1,15 +1,17 @@
-import { User } from "lucide-react"
-import Link from "next/link"
+"use client";
+import { User } from "lucide-react";
+import { useShop } from "@/context/ShopContext";
 
-const UserIcon = () => {
+const SignIn = () => {
+  const { setLoginOpen } = useShop();
+
   return (
-    <Link href={'/login'}>
-      <div className="flex items-center gap-1 hover:text-lightColor hoverEffect cursor-pointer">
-        <User className="w-5 h-5"/>
-        <span className="hidden md:inline"></span>
-      </div>
-    </Link>
-  )
+    <button
+      onClick={() => setLoginOpen(true)}
+      className="hover:text-darkColor transition-colors"
+    >
+      <User className="w-5 h-5 md:w-6 md:h-6" />
+    </button>
+  );
 }
-
-export default UserIcon
+export default SignIn;
