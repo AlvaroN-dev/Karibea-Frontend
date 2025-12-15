@@ -10,7 +10,7 @@ export interface Product {
     quantity?: number;
 }
 
-// Extiende Product para el carrito
+// Es para extender el tipo Product para el carrito
 export interface CartItem extends Product {
     quantity: number;
 }
