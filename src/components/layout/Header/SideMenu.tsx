@@ -15,14 +15,14 @@ const SideMenu = ({ isOpen, onClose }: SideMenuProps) => {
   const [animation, setAnimation] = useState("animate-slide-in-left")
   const pathname = usePathname()
 
-  // Control de animación al abrir/cerrar
   useEffect(() => {
     if (isOpen) {
       setShowMenu(true)
       setAnimation("animate-slide-in-left")
     } else {
       setAnimation("animate-slide-out-left")
-      const timeout = setTimeout(() => setShowMenu(false), 300) // duración animación
+      // Esperar a que termine la animación antes de ocultar
+      const timeout = setTimeout(() => setShowMenu(false), 300)
       return () => clearTimeout(timeout)
     }
   }, [isOpen])
@@ -47,7 +47,7 @@ const SideMenu = ({ isOpen, onClose }: SideMenuProps) => {
         <div className="flex items-center justify-between px-5 py-4 border-b">
           <span className="font-semibold text-lg text-darkColor">Menú</span>
           <button onClick={onClose}>
-            <X className="w-6 h-6 text-gray-400 hover:text-black cursor-pointer" />
+            <X className="w-6 h-6 text-darkColor cursor-pointer" />
           </button>
         </div>
 

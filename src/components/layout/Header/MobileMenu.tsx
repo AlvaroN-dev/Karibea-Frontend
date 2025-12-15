@@ -5,7 +5,7 @@ import SideMenu from "./SideMenu"
 import { useState } from "react"
 
 const MobileMenu = () => {
-  // Estado para controlar si el SideMenu está abierto
+  // Estado para abrir/cerrar el SideMenu
   const [isSideBarOpen, setIsSideBarOpen] = useState(false)
 
   return (
